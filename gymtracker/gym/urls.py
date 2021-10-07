@@ -1,7 +1,13 @@
 from django.urls import path
 from rest_framework import views
 from gym import views
+# from gymtracker.gym.views import user_exercises
 
 urlpatterns = [
-    path ('', views.GymList.as_view())
+    path ('all/', views.get_all_exercises),
+    path ('', views.user_exercises)
 ]
+
+# urlpatterns = [
+#     path ('', views.GymList.as_view())
+# ]
