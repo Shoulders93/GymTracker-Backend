@@ -22,7 +22,7 @@ def get_all_exercises(request):
     return Response(serializer.data)
 
 
-@api_view(['POST', 'GET', 'DELETE'])
+@api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
 def user_exercises(request):
 
