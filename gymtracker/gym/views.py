@@ -1,4 +1,6 @@
+from functools import partial
 from django.db.models import manager
+from django.http.response import Http404
 from rest_framework import serializers, status
 from rest_framework import permissions
 from rest_framework.views import APIView
@@ -20,7 +22,7 @@ def get_all_exercises(request):
     return Response(serializer.data)
 
 
-@api_view(['POST', 'GET'])
+@api_view(['POST', 'GET', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def user_exercises(request):
 
@@ -39,7 +41,28 @@ def user_exercises(request):
         return Response(serializer.data)
 
 
+def get_object(pk):
+    try:
+        return Gym.objects.get(pk=pk)
+    except Gym.DoesNotExist:
+        raise Http404
 
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete(request, pk):
+    exercise = get_object(pk)
+    exercise.delete()
+    return Response(status.HTTP_204_NO_CONTENT)
+
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def patch(request, pk):
+    exercise = get_object(pk)
+    serializer = GymSerializer(exercise, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(data=serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # class GymList(APIView):
