@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'gym.apps.GymConfig',
     'food.apps.FoodConfig',
+    'misc.apps.MiscConfig',
 ]
 
 MIDDLEWARE = [
