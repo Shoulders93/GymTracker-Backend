@@ -3,5 +3,7 @@ from rest_framework import views
 from food import views
 
 urlpatterns = [
-    path ('all/', views.get_all_exercises),
+    path ('', views.user_food),
+    path ('delete/<int:pk>', views.delete),
+    path ('patch/<int:pk>', views.patch),
 ]
