@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication.apps.AuthenticationConfig',
     'gym.apps.GymConfig',
+    'food.apps.FoodConfig',
 ]
 
 MIDDLEWARE = [
