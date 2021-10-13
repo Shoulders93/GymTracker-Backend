@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'corsheaders', 
 ]
 
-CORS_ORIGIN_ALLOW_ALL=True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +54,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL=True
 
 ROOT_URLCONF = 'gymtracker.urls'
 
